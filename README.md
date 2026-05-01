@@ -11,7 +11,8 @@ A step-by-step guide for absolute beginners. No prior experience required.
 3. [Install the GitHub CLI](#3-install-the-github-cli)
 4. [Log In with the GitHub CLI](#4-log-in-with-the-github-cli)
 5. [Verify Everything Works](#5-verify-everything-works)
-6. [What Now?](#6-what-now)
+6. [Open a Pull Request (PR)](#6-open-a-pull-request-pr)
+7. [What Now?](#7-what-now)
 
 ---
 
@@ -212,7 +213,83 @@ If all three give you output without errors, you are fully set up. Nice work.
 
 ---
 
-## 6. What Now?
+## 6. Open a Pull Request (PR)
+
+A **pull request** is a request to merge your changes into another branch (usually `main`). It lets others review your work before it becomes part of the shared project.
+
+**Before you start:** Clone the repo and `cd` into it, or open a folder that is already a Git repo. If you are not sure, run `git status` — if you see branch info and file lists, you are in a repo.
+
+### Step 1: Get the latest code
+
+```
+git checkout main
+git pull origin main
+```
+
+(If your default branch is named `master`, use that instead of `main`.)
+
+### Step 2: Create a branch for your work
+
+Pick a short, descriptive branch name (for example `add-sandbox-readme` or `fix-typo-in-guide`):
+
+```
+git checkout -b your-branch-name
+```
+
+### Step 3: Make your changes
+
+Edit files, add new ones, or move things around. The `sandbox/` folder is a good place for experiments that should not mix with official team areas.
+
+### Step 4: Save your work in Git
+
+```
+git status
+git add .
+git commit -m "Describe your change in one short sentence"
+```
+
+Use a clear commit message so reviewers (and future you) know what changed.
+
+### Step 5: Push your branch to GitHub
+
+The first time you push this branch:
+
+```
+git push -u origin your-branch-name
+```
+
+After that, `git push` is enough for the same branch.
+
+### Step 6: Open the PR on GitHub
+
+**Option A — In the browser:** After `git push`, GitHub often shows a yellow banner with **Compare & pull request**. Click it, add a title and a short description of what you did and why, then click **Create pull request**.
+
+**Option B — From the terminal** (if you use the GitHub CLI from [section 3](#3-install-the-github-cli)):
+
+```
+gh pr create
+```
+
+Follow the prompts for title and body, or pass them directly:
+
+```
+gh pr create --title "Your PR title" --body "What changed and why."
+```
+
+### After the PR is open
+
+- Respond to review comments and push more commits to the same branch; they appear on the PR automatically.
+- When it is approved, someone with permission merges it (or you do, depending on the repo).
+- Locally, switch back to main and pull the merged work:
+
+```
+git checkout main
+git pull origin main
+```
+
+---
+
+## 7. What Now?
 
 Here are some things to try:
 
